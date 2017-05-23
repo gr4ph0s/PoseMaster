@@ -16,6 +16,7 @@
           <option value="c4d" />
           <option value="TextureManager.localimport" />
           <option value="res.C4D.C4D.localimport" />
+          <option value="res.Ui.MainWindows.*" />
         </list>
       </option>
     </inspection_tool>

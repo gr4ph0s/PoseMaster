@@ -35,6 +35,8 @@ if bool(1):
 
 with localimport('.') as _importer:
     import collections
+    import c4d
+
     from ..Helper.Const import Const
 # ==============================================
 #                   Import
@@ -43,13 +45,13 @@ with localimport('.') as _importer:
 #Helper tuple for storing GeUserAre coord
 Coord = collections.namedtuple('Coord', 'x y')
 
-class PoseLibraryView(c4d.gui.GeUserArea):
+class UiPoseLibraryView(c4d.gui.GeUserArea):
     """
     This class implements the visual representation of PoseList
     """
 
     def __init__(self, ui_pose_list, tile_size=Const.UI_MINIATURE_SIZE, tile_space=8, ):
-        super(PoseLibraryView, self).__init__()
+        super(UiPoseLibraryView, self).__init__()
         self.pose_list = ui_pose_list
         self.set_tile_size(tile_size)
         self.tile_space = tile_space
@@ -256,4 +258,4 @@ class PoseLibraryView(c4d.gui.GeUserArea):
                 self.pose_list.select_pose(pose_id_click)
                 self.Redraw()
 
-        return super(PoseLibrary_View, self).Message(msg, result)
+        return super(UiPoseLibraryView, self).Message(msg, result)

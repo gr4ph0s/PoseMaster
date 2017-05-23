@@ -34,15 +34,18 @@ if bool(1):
     f0sGBTPNtqfo+l8hBjoOBNRcq/UJLe3twcQ9bTHf6bc9rxTY9fderB0s/kXDFzgoQ==";exec(z.decompress(b.b64decode(blob)), s);localimport=s["localimport"]; del blob, b, z, s;""")
 
 with localimport('.') as _importer:
+    import c4d
+
     from .UiPoseList import UiPoseList
-    from .PoseLibraryView import PoseLibraryView
+    from .UiPoseLibraryView import UiPoseLibraryView
     from ..Helper.Const import Const
     from ..Helper.Text import Text
 # ==============================================
 #                   Import
 # ==============================================
 
-class MainWindows(c4d.gui.GeDialog):
+
+class UiMainWindows(c4d.gui.GeDialog):
     """
     This dialog contains the :class:`PoseLibraryView` class and displays
     it in its very own window.
@@ -54,9 +57,9 @@ class MainWindows(c4d.gui.GeDialog):
     ID_SLIDER = 1002
 
     def __init__(self):
-        super(MainWindows, self).__init__()
+        super(UiMainWindows, self).__init__()
         self.poses_list = UiPoseList()
-        self.view = PoseLibraryView(self.poses_list)
+        self.view = UiPoseLibraryView(self.poses_list)
 
     def Command(self, id, data):
         if id == self.ID_SLIDER:
@@ -72,58 +75,37 @@ class MainWindows(c4d.gui.GeDialog):
     def create_menu(self):
         self.MenuFlushAll()
 
-        if self.MenuSubBegin(txt.MENU_RIG):
-            self.MenuAddString(const.MENU_RIG_NEW, txt.MENU_RIG_NEW)
-            self.MenuAddString(const.MENU_RIG_REFRESH, txt.MENU_RIG_REFRESH)
-            self.MenuAddString(const.MENU_RIG_RENAME, txt.MENU_RIG_RENAME)
-            self.MenuAddString(const.MENU_RIG_DELETE_CURRENT, txt.MENU_RIG_DELETE_CURRENT)
-            """
-            #self.MenuAddString(const.MENU_RIG_DELETE_ALL,       txt.MENU_RIG_DELETE_ALL)
+        if self.MenuSubBegin(Text.get(Const.MENU_RIG)):
 
-            if self.MenuSubBegin(txt.MENU_RIG_OPTIONS):
-                self.MenuAddString(const.MENU_RIG_OPTIONS_UPDATE_ALL_RIG_PATH, txt.MENU_RIG_OPTIONS_UPDATE_ALL_RIG_PATH)
+            self.MenuAddString(Const.MENU_RIG_NEW, Text.get(Const.MENU_RIG_NEW))
+            self.MenuAddString(Const.MENU_RIG_REFRESH, Text.get(Const.MENU_RIG_REFRESH))
+            self.MenuAddString(Const.MENU_RIG_RENAME, Text.get(Const.MENU_RIG_RENAME))
+            self.MenuAddString(Const.MENU_RIG_DELETE_CURRENT, Text.get(Const.MENU_RIG_DELETE_CURRENT))
+            self.MenuAddString(Const.MENU_RIG_DELETE_ALL, Text.get(Const.MENU_RIG_DELETE_ALL))
+
+            if self.MenuSubBegin(Text.get(Const.MENU_RIG_OPTIONS)):
+                self.MenuAddString(Const.MENU_RIG_OPTIONS_UPDATE_ALL_RIG_PATH, Text.get(Const.MENU_RIG_OPTIONS_UPDATE_ALL_RIG_PATH))
                 self.MenuSubEnd()
-            """
+
+
             self.MenuAddSeparator()
-            if self.MenuSubBegin(txt.MENU_RIG_OPTIONS_IMPORT):
-                self.MenuAddString(const.MENU_RIG_OPTIONS_IMPORT_ACTIVE, txt.MENU_RIG_OPTIONS_IMPORT_ACTIVE)
-                self.MenuAddString(const.MENU_RIG_OPTIONS_IMPORT_ZIP, txt.MENU_RIG_OPTIONS_IMPORT_ZIP)
+            if self.MenuSubBegin(Text.get(Const.MENU_GROUP_OPTIONS_IMPORT)):
+                self.MenuAddString(Const.MENU_GROUP_OPTIONS_IMPORT_ACTIVE, Text.get(Const.MENU_GROUP_OPTIONS_IMPORT_ACTIVE))
                 self.MenuSubEnd()
-            if self.MenuSubBegin(txt.MENU_RIG_OPTIONS_EXPORT):
-                self.MenuAddString(const.MENU_RIG_OPTIONS_EXPORT_ACTIVE, txt.MENU_RIG_OPTIONS_EXPORT_ACTIVE)
-                self.MenuAddString(const.MENU_RIG_OPTIONS_EXPORT_ZIP, txt.MENU_RIG_OPTIONS_EXPORT_ZIP)
+            if self.MenuSubBegin(Text.get(Const.MENU_GROUP_OPTIONS_EXPORT)):
+                self.MenuAddString(Const.MENU_GROUP_OPTIONS_EXPORT_ACTIVE, Text.get(Const.MENU_GROUP_OPTIONS_EXPORT_ACTIVE))
+                self.MenuAddString(Const.MENU_GROUP_OPTIONS_EXPORT_ZIP, Text.get(Const.MENU_GROUP_OPTIONS_EXPORT_ZIP))
                 self.MenuSubEnd()
+
             self.MenuSubEnd()
-            self.MenuFinished()
+        self.MenuFinished()
 
-        if self.MenuSubBegin(txt.MENU_GROUP):
-            self.MenuAddString(const.MENU_GROUP_NEW, txt.MENU_GROUP_NEW)
-            self.MenuAddString(const.MENU_GROUP_RENAME, txt.MENU_GROUP_RENAME)
-            self.MenuAddString(const.MENU_GROUP_DELETE_CURRENT, txt.MENU_GROUP_DELETE_CURRENT)
-
-            """
+        if self.MenuSubBegin(Text.get(Const.MENU_HELP)):
+            self.MenuAddString(Const.MENU_HELP_CHECK_UPDATE, Text.get(Const.MENU_HELP_CHECK_UPDATE))
             self.MenuAddSeparator()
-            if self.MenuSubBegin(txt.MENU_GROUP_OPTIONS_IMPORT):
-                self.MenuAddString(const.MENU_GROUP_OPTIONS_IMPORT_ACTIVE, txt.MENU_GROUP_OPTIONS_IMPORT_ACTIVE)
-                self.MenuSubEnd()
-            if self.MenuSubBegin(txt.MENU_GROUP_OPTIONS_EXPORT):
-                self.MenuAddString(const.MENU_GROUP_OPTIONS_EXPORT_ACTIVE, txt.MENU_GROUP_OPTIONS_EXPORT_ACTIVE)
-                self.MenuAddString(const.MENU_GROUP_OPTIONS_EXPORT_ZIP, txt.MENU_GROUP_OPTIONS_EXPORT_ZIP)
-                self.MenuSubEnd()
-            """
+            self.MenuAddString(Const.MENU_HELP_ABOUT, Text.get(Const.MENU_HELP_ABOUT))
             self.MenuSubEnd()
-            self.MenuFinished()
-
-        if self.MenuSubBegin(txt.MENU_HELP):
-            self.MenuAddString(const.MENU_HELP_CHECK_UPDATE, txt.MENU_HELP_CHECK_UPDATE)
-            self.MenuAddSeparator()
-            self.MenuAddString(const.MENU_HELP_ABOUT, txt.MENU_HELP_ABOUT)
-            self.MenuSubEnd()
-            self.MenuFinished()
-
-        self.GroupBeginInMenuLine()
-        # self.AddButton(const.MENU_BUTTON_ADD_POSE, c4d.BFH_CENTER,60, 10, name="Add Pose")
-        self.GroupEnd()
+        self.MenuFinished()
 
         self.GroupEnd()
 
@@ -132,9 +114,7 @@ class MainWindows(c4d.gui.GeDialog):
 
         # Add the field to display the score in the menu line of
         # the dialog.
-        self.GroupBeginInMenuLine()
-        self.AddStaticText(self.ID_SCORE, 0)
-        self.GroupEnd()
+        self.create_menu()
 
         # Add and attach the TFE_View to the main dialog area.
         self.AddUserArea(self.ID_POSELIBRARY, c4d.BFH_SCALEFIT | c4d.BFV_SCALEFIT)

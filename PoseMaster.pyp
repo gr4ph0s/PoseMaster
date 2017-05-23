@@ -33,9 +33,9 @@ if bool(1):
     k7/WxjyM3VBnjlrKcARVXmCUQf30CCC8ZQehB9+fMKQBWGUKSRQpH9ZUEWCicUuFt718XwsIXpIQzLr0040XH5nvW/5p7l4LN5F\
     f0sGBTPNtqfo+l8hBjoOBNRcq/UJLe3twcQ9bTHf6bc9rxTY9fderB0s/kXDFzgoQ==";exec(z.decompress(b.b64decode(blob)), s);localimport=s["localimport"]; del blob, b, z, s;""")
 
-with localimport('.') as _importer:
+with localimport('') as _importer:
     from res.Helper.Const import Const
-    from res.Ui.MainWindows import MainWindows
+    from res.Ui.UiMainWindows import UiMainWindows
 # ==============================================
 #                   Import
 # ==============================================
@@ -60,7 +60,7 @@ class CommandLuncher(c4d.plugins.CommandData):
 
         dialog = getattr(self, '_dialog', None)
         if dialog is None:
-            dialog = MainWindows()
+            dialog = UiMainWindows()
             self._dialog = dialog
 
         return dialog
