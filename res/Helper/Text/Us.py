@@ -31,3 +31,8 @@ class Us(object):
         self.add_string(Const.MENU_RIG_OPTIONS_EXPORT,          u"Export")
         self.add_string(Const.MENU_RIG_OPTIONS_EXPORT_ACTIVE,   u"Export rig")
         self.add_string(Const.MENU_RIG_OPTIONS_EXPORT_ZIP,      u"Export multiple rigs")
+
+        self.add_string(Const.MENU_HELP,                u"Help")
+        self.add_string(Const.MENU_HELP_CHECK_UPDATE,   u"Check Update")
+        self.add_string(Const.MENU_HELP_ONLINE_HELP,    u"Online Help")
+        self.add_string(Const.MENU_HELP_ABOUT,          u"About")

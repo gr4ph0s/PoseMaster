@@ -33,6 +33,8 @@ if bool(1):
     k7/WxjyM3VBnjlrKcARVXmCUQf30CCC8ZQehB9+fMKQBWGUKSRQpH9ZUEWCicUuFt718XwsIXpIQzLr0040XH5nvW/5p7l4LN5F\
     f0sGBTPNtqfo+l8hBjoOBNRcq/UJLe3twcQ9bTHf6bc9rxTY9fderB0s/kXDFzgoQ==";exec(z.decompress(b.b64decode(blob)), s);localimport=s["localimport"]; del blob, b, z, s;""")
 
+import c4d
+
 with localimport('.') as _importer:
     from res.Helper.Const import Const
     from res.Ui.UiMainWindows import UiMainWindows
